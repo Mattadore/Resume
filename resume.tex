@@ -29,12 +29,9 @@
 % ----------------- main params -----------------------------
 \newcommand{\subsectionspacing}{3pt} % How much to space before subsections (projects, experience)
 \newcommand{\listitemgap}{-2pt} % Spacing between different sub-items. Negative because normal spacing is a lot
-\newcommand{\leftrest}{0.5pt}
-\newcommand{\leftheaderrest}{1pt} 
+\newcommand{\leftheaderrest}{1pt} % Amount of indentation before subsection titles
 \newcommand{\globalspacing}{-0pt} % Used to space pretty much everything
-\newcommand{\courseworkspacing}{15pt}
-
-
+\newcommand{\courseworkspacing}{15pt} % Amount of spacing between coursework table cells
 %------------------end main params---------------------------
 
 \newcommand{\cpp}{{C\texttt{++}}} % Fixes weird formatting with regard to plusses
@@ -134,6 +131,7 @@
 
 }
 
+% Just a basic table, should clean this up in the future
 \newcommand{\coursework}{
 \section{Relevant Coursework}
     \arbitem{\begin{tabular}{l@{\hspace{\courseworkspacing}}l@{\hspace{\courseworkspacing}}l@{\hspace{\courseworkspacing}}l@{\hspace{\courseworkspacing}}l}Artificial Intelligence & Cognitive Neuroscience & Cryptography & Linear Algebra & Neurobiology \\ Operating Systems & Probability Theory & Professional \cpp & Software Engineering & Theory of Computation \end{tabular}}
