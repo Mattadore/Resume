@@ -13,7 +13,6 @@
 \usepackage{booktabs}
 \usepackage{boldline}
 \usepackage{tabularx}
-% \usepackage[pdftex]{hyperref}
 \usepackage{pifont}
 \usepackage{ifthen}
 \usepackage{hyperref}
@@ -21,13 +20,6 @@
     colorlinks=false,
 }
 
-% \addtolength{\oddsidemargin}{-0.5in}
-% \addtolength{\evensidemargin}{-0.5in}
-% \addtolength{\textwidth}{-10pt}
-% \addtolength{\topmargin}{-.5in}
-% \addtolength{\textheight}{1.0in}
-
-%set up hdr%
 \pagestyle{fancy}
 \fancyhf{}
 \fancyfoot{}
@@ -35,24 +27,23 @@
 \renewcommand{\footrulewidth}{0pt}
 
 % ----------------- main params -----------------------------
-\newcommand{\listitemspacing}{3pt}
-\newcommand{\listitemgap}{-2pt}
+\newcommand{\subsectionspacing}{3pt} % How much to space before subsections (projects, experience)
+\newcommand{\listitemgap}{-2pt} % Spacing between different sub-items. Negative because normal spacing is a lot
 \newcommand{\leftrest}{0.5pt}
-\newcommand{\leftheaderrest}{1pt}
-\newcommand{\globalspacing}{-0pt}
+\newcommand{\leftheaderrest}{1pt} 
+\newcommand{\globalspacing}{-0pt} % Used to space pretty much everything
 \newcommand{\courseworkspacing}{15pt}
 
 
 %------------------end main params---------------------------
 
-% \newcommand{\checkm}{\ding{51}}
-\newcommand{\checkm}{}
-
+\newcommand{\cpp}{{C\texttt{++}}} % Fixes weird formatting with regard to plusses
 
 \newcolumntype{?}{!{\vrule width 1.2pt}}
 \raggedbottom
 \raggedright
 
+% Specific title spacing
 \titleformat{\section}{
   \vspace{-10pt}\scshape\raggedright\large
 }{}{0em}{\vspace{-1.3pt}}[\color{black}\titlerule \vspace{-7pt}]
@@ -60,22 +51,19 @@
 
 \setlength{\tabcolsep}{0in}
 
+% Some other options I looked at for list bullets 
 % \renewcommand{\labelitemi}{$\blacktriangleright$}
 % \renewcommand{\labelitemii}{$\triangleright$}
 
 % \renewcommand{\labelitemi}{$\RHD}
 % \renewcommand{\labelitemii}{$\rhd}
 
-
-\renewcommand{\labelitemi}{$\filledmedtriangleright}
-% \renewcommand{\labelitemii}{$\rhd}
-
-% \newcommand{\spacing}{\vspace{\globalspacing}}
-\newcommand{\spacing}{\vspace{\globalspacing}}
-% \newcommand{\dumbspacing}{\vspace{-12pt}}
-
 %rhd, RHD
 %filledmedtriangleright,medtriangleright
+
+\renewcommand{\labelitemi}{$\filledmedtriangleright}
+
+\newcommand{\spacing}{\vspace{\globalspacing}}
 
 \newcommand{\resumeItem}[2]{
   \item{
@@ -85,61 +73,42 @@
 
 \newcommand{\splitter}[4]{\begin{tabular}{l|l} {#1} \hspace{#3} & \hspace{#4} {#2} \end{tabular}}
 
+% Template for subheadings, sets up tabular structure with dates at end
 \newcommand{\subheading}[3]{
-  \spacing
-  
-    \begin{tabular*}{0.998\textwidth}{@{\hspace{\leftheaderrest}}l@{\extracolsep{\fill}}r@{}}
+    \spacing
+    \begin{tabular*}{0.996\textwidth}{@{\hspace{\leftheaderrest}}l@{\extracolsep{\fill}}r@{}}
       \textbf{#1} & \textit{\ifthenelse{\equal{#3}{}}{#2}{{#2} {\dash} {#3}}}
     \end{tabular*} \\
     \spacing
-     %don't really understand why I need this but whatever
 }
 
+% Template for project items
 \newcommand{\projectitem}[3]{
-  \vspace{\listitemspacing}
+  \vspace{\subsectionspacing}
   \subheading{#1}{#2\vspace{\listitemgap}}{#3}
 }
 
+% Template for arbitrary items 
 \newcommand{\arbitem}[1]{
     \spacing
-    % \begin{tabular}{@{\hspace{\leftrest}}p{0.996\textwidth}}
     \hangindent=1pt
     \raggedright
     \rightskip=1.5pt
     \hspace{0.3pt}{#1} \\
-    % \end{tabular} \\
     \spacing
-    % \spacing %don't really understand why I need this but whatever
 }
 
-\newcommand{\arbitemold}[1]{
-    \spacing
-    \begin{tabular}{@{\hspace{\leftrest}}p{0.996\textwidth}}
-    {#1}
-    \end{tabular} \\
-    \spacing
-    % \spacing %don't really understand why I need this but whatever
-}
-
+% Template for prior work experience
 \newcommand{\position}[6]{
-%   \spacing
-%     \begin{tabular*}{0.997\textwidth}{l@{\extracolsep{\fill}}r@{}}
-%       \textit{\small#1} & \textit{\small #2}
-%         % & \textit{{#2}}
-%     \end{tabular*}
-%     \spacing
-%     \dumbspacing
-    % \spacing %ditto
-        \vspace{\listitemspacing}
+    \vspace{\subsectionspacing}
     \subheading{\splitter{\textbf{#1}}{\normalfont\textit{#2}}{#3}{#4}}{#5\vspace{\listitemgap}}{#6}
-    % \renewcommand{\spacing}{\vspace{0pt}}
 }
 
 \newcommand{\dash}{{\textbf{–}}}
 
 \newcommand{\bull}{{\large$\blacktriangleright$\hspace{4pt}}}
 
-% title
+% Title, a bit hardcoded here
 \newcommand{\info}{
 \textbf{\huge Matt Buckley}
 \vspace{1.5pt}
@@ -152,87 +121,77 @@
     \end{tabular*} \\
 }
 \vspace{3pt}
-%not sure why this is necessary
 }
 
 \newcommand{\education}{
 \section{Education}
     \subheading{\splitter{University of Southern California}{\normalfont Los Angeles, CA}{3pt}{2pt}}{August 2014}{May 2018}
-    % \subheading{\splitter{University of Southern California}{\normalfont Los Angeles, CA}{55.33pt}{2.5pt}}{Fall 2014 {\dash} Spring 2018}
     
     \arbitem{\splitter{\textit{B.S. in Computer Science, Minor in Neuroscience}}{\textit{Viterbi School of Engineering}}{4pt}{0pt}}
     
     \arbitem{\begin{tabular}{l|l|l}\textbf{GPA: 3.4} \hspace{4pt} & \hspace{2pt} \textbf{ACT: 36}
     \hspace{4pt} & \hspace{3pt} \textbf{SAT: 2370} \end{tabular}}
-    % \arbitem{\splitter{\splitter{\textbf{GPA: 3.4}}{\textbf{ACT: 36}}{4pt}{2pt}}{\textbf{SAT: 2370}}{4pt}{2.5pt}}
+
 }
 
 \newcommand{\coursework}{
 \section{Relevant Coursework}
-    \arbitem{\begin{tabular}{l@{\hspace{\courseworkspacing}}l@{\hspace{\courseworkspacing}}l@{\hspace{\courseworkspacing}}l@{\hspace{\courseworkspacing}}l}Artificial Intelligence & Cognitive Neuroscience & Cryptography & Linear Algebra & Neurobiology \\ Operating Systems & Probability Theory & Professional C\texttt{++} & Software Engineering & Theory of Computation \end{tabular}}
+    \arbitem{\begin{tabular}{l@{\hspace{\courseworkspacing}}l@{\hspace{\courseworkspacing}}l@{\hspace{\courseworkspacing}}l@{\hspace{\courseworkspacing}}l}Artificial Intelligence & Cognitive Neuroscience & Cryptography & Linear Algebra & Neurobiology \\ Operating Systems & Probability Theory & Professional \cpp & Software Engineering & Theory of Computation \end{tabular}}
 }
-
 
 \newcommand{\skills}{
 \section{Skills and Interests}
-    \arbitemold{\textbf{\hspace{1pt}8\texttt{+} Years Programming Experience}}
-    \arbitemold{\bull\textbf{Proficient Languages: }{C{\texttt{++}}, C, Python, Javascript, Java, Bash, Lua}}
-    \arbitemold{\bull\textbf{Familiar Languages: }{HTML/CSS, Lisp, MATLAB, PHP}}
-    \arbitemold{\bull\textbf{Software Experience: }{Unix/Linux, TensorFlow, Google Cloud, ROS, Git, React, Gazebo, V-Rep, Unity}}
+    \arbitem{\textbf{\hspace{1pt}8\texttt{+} Years Programming Experience}}
+    \arbitem{\bull\textbf{Proficient Languages: }{\cpp, C, Python, Javascript, Java, Bash, Lua}}
+    \arbitem{\bull\textbf{Familiar Languages: }{HTML/CSS, Lisp, MATLAB, PHP}}
+    \arbitem{\bull\textbf{Software Experience: }{Unix/Linux, TensorFlow, Google Cloud, ROS, Git, React, Gazebo, V-Rep, Unity}}
 }
-
+ 
 \newcommand{\experience}{
 \section{Experience}
 
-    \vspace{-\listitemspacing}
+    \vspace{-\subsectionspacing} % Remove space before first element since extra space is appended before
+    
     \position{USC Center for Advanced Manufacturing }{Undergraduate Researcher}{0pt}{1pt}{January 2017}{September 2017}
     \arbitem{\bull Led a research team to create the winning entry for the 2017 NIST ARIAC competition.} 
-    \arbitem{\bull Personally implemented the competition solution in C\texttt{++}, and integrated it with ROS and Gazebo.}
+    \arbitem{\bull Personally implemented the competition solution in \cpp, and integrated it with ROS and Gazebo.}
     \arbitem{\bull Presented the solution and findings for a NIST workshop at iROS 2017 in Vancouver. }
 
     \position{USC Robotic Embedded Systems Lab }{Undergraduate Researcher}{0pt}{1.5pt}{November 2015}{August 2016}
-    \arbitem{\bull Helped develop an “active articulation” model to determine robot grasp joint geometry using ROS and C\texttt{++}.}
+    \arbitem{\bull Helped develop an “active articulation” model to determine robot grasp joint geometry using ROS and \cpp.}
     \arbitem{\bull Worked to develop a firmware-level quadrotor swarm simulator in V-Rep using C\texttt{++}, C, Lua, and ROS.}
     \arbitem{\bull Helped improve quadrotor tracking software that processes data from a Vicon system, using C\texttt{++} and MATLAB.}
     
     \position{USC Aerial Robotics Team Leadership }{High-Level Software Team Leader}{0pt}{1.5pt}{August 2015}{May 2017}
-    % \vspace{-1}
     \arbitem{\bull Managed a software team working on dynamic path planning, object detection and analysis, global state simulation, optical flow tracking, and more. Directed the design of the system layout for handling and connecting these components.}
-    % \vspace{-0.5pt} % don't ask
     \arbitem{\bull Oversaw the integration of these systems with one another and with the robot’s control routines using ROS.}
-    
-    % \position{USC Aerial Robotics Team }{Member}{0pt}{1.5pt}{Fall 2014}{Spring 2018}
-    % \arbitem{\bull Managed a software team working on dynamic path planning, object detection and analysis, global state simulation, optical flow tracking, and more. Directed the design of the system layout for handling and connecting these components.}
-    % \vspace{-0.5pt} % don't ask
-    % \arbitem{\bull Oversaw the integration of these systems with one another and with the robot’s control routines using ROS.}
 
 }
 
 \newcommand{\projects}{
 \section {Projects}
     
-    \vspace{-\listitemspacing}
+    \vspace{-\subsectionspacing} % Remove space before first element since extra space is appended before
     
-    % \subheading{Stochastic Robot Prediction}{Fall 2014}{Spring 2017}
     \projectitem{MunchBunch Food Truck Application}{January 2018}{Present}
     \arbitem{\bull Creating an Android application for locating, contacting, and ordering from food trucks using React Native and JavaScript.}
     
     \projectitem{\href{https://www.nist.gov/el/intelligent-systems-division-73500/agile-robotics-industrial-automation-competition/ariac-2017}{ARIAC Competition}}{January 2017}{July 2017}
     \arbitem{\bull Led a research team that designed and submitted the winning solution to the NIST ARIAC Competition. The competition was designed to spur advancement in Agile robotics, enabling industrial robots to dynamically plan and execute different kinds of tasks depending on their environment and sensor quality, rather than being single-purpose.}
-    \arbitem{\bull Personally implemented the solution in C\texttt{++}, integrating it with the Gazebo simulator and ROS operating system.}
+    \arbitem{\bull Personally implemented the solution in \cpp, integrating it with the Gazebo simulator and ROS operating system.}
     \arbitem{\bull Invited to speak at iROS 2017 in Vancouver as part of winning, to present the strategy and methods developed.}
     
     \projectitem{Stochastic Robot Simulation}{August 2014}{May 2017}
     \arbitem{\bull Created and updated an event-based simulation for a system of interacting robots with added noise using C\texttt{++}, to model the possible outcomes of different given configurations. This was done to allow dynamic prediction of robots' locations and states at a given time using limited information, for the International Aerial Robotics Competition.}
     
-    \projectitem{Aerial Robot Path Planning \checkm}{August 2015}{January 2018}
-    \arbitem{\bull Expanded upon the earlier event-based simulation by using it for intelligent planning. This planner, written in C\texttt{++}, estimates the outcome of sets of potential action sequences in order to pick initial moves with highest utility.}
+    \projectitem{Aerial Robot Path Planning}{August 2015}{January 2018}
+    \arbitem{\bull Expanded upon the earlier event-based simulation by using it for intelligent planning. This planner, written in \cpp, estimates the outcome of sets of potential action sequences in order to pick initial moves with highest utility.}
 
     \projectitem{Quadrotor Swarm Simulation}{June 2016}{August 2016}
-    \arbitem{\bull Worked to develop a simulation of a quadrotor swarm to allow rapid and safe testing of new control code. This involved integrating the drones’ C hardware code with C++ ROS and V-rep interfaces, as well as building an accurate physics model to realistically simulate their behavior.}
+    \arbitem{\bull Worked to develop a simulation of a quadrotor swarm to allow rapid and safe testing of new control code. This involved integrating the drones’ C hardware code with {\cpp} ROS and V-rep interfaces, as well as building an accurate physics model to realistically simulate their behavior.}
     
-    \projectitem{Active Articulation Model \checkm}{November 2015}{May 2016}
-    \arbitem{\bull Worked to expand an interactive model implemented in Python and C\texttt{++} that determines the joint geometry connecting different objects by repeatedly finding and attempting the most “informative” manipulations with a robotic arm.}
+    \projectitem{Active Articulation Model}{November 2015}{May 2016}
+    \arbitem{\bull Worked to expand an interactive model implemented in Python and {\cpp} that determines the joint geometry connecting different objects by repeatedly finding and attempting the most “informative” manipulations with a robotic arm.}
     
     % \projectitem{IRLHUD}{Fall 2014}{}
     % \arbitem{\bull Created an Oculus Rift interface for Microsoft Kinect using C++ to test out different applications of AR in everyday life, for the 2014 HackSC hackathon.}
@@ -244,6 +203,8 @@
 
 
 % --------------------------------ACTUAL DOCUMENT---------------------------------
+
+%final layout, allows rearrangement of sections within the document
 \begin{document}
 
 \info
