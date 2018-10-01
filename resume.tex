@@ -36,6 +36,7 @@
 
 \newcommand{\cpp}{{C\texttt{++}}} % Fixes weird formatting with regard to plusses
 
+% Have to create a new column type to support the way my email is embedded in the title
 \newcolumntype{?}{!{\vrule width 1.2pt}}
 \raggedbottom
 \raggedright
@@ -126,7 +127,7 @@
     
     \arbitem{\splitter{\textit{B.S. in Computer Science, Minor in Neuroscience}}{\textit{Viterbi School of Engineering}}{4pt}{0pt}}
     
-    \arbitem{\begin{tabular}{l|l|l}\textbf{GPA: 3.4} \hspace{4pt} & \hspace{2pt} \textbf{ACT: 36}
+    \arbitem{\begin{tabular}{l|l|l}\textbf{GPA: 3.3} \hspace{4pt} & \hspace{2pt} \textbf{ACT: 36}
     \hspace{4pt} & \hspace{3pt} \textbf{SAT: 2370} \end{tabular}}
 
 }
@@ -139,6 +140,7 @@
 
 \newcommand{\skills}{
 \section{Skills and Interests}
+    \vspace{1.5pt} % Compensate for tables having weird implicit spacing
     \arbitem{\textbf{\hspace{1pt}8\texttt{+} Years Programming Experience}}
     \arbitem{\bull\textbf{Proficient Languages: }{\cpp, C, Python, Javascript, Java, Bash, Lua}}
     \arbitem{\bull\textbf{Familiar Languages: }{HTML/CSS, Lisp, MATLAB, PHP}}
