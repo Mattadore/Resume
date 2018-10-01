@@ -20,11 +20,6 @@
     colorlinks=false,
 }
 
-\pagestyle{fancy}
-\fancyhf{}
-\fancyfoot{}
-\renewcommand{\headrulewidth}{0pt}
-\renewcommand{\footrulewidth}{0pt}
 
 % ----------------- main params -----------------------------
 \newcommand{\subsectionspacing}{3pt} % How much to space before subsections (projects, experience)
@@ -34,12 +29,23 @@
 \newcommand{\courseworkspacing}{15pt} % Amount of spacing between coursework table cells
 %------------------end main params---------------------------
 
-\newcommand{\cpp}{{C\texttt{++}}} % Fixes weird formatting with regard to plusses
-
-% Have to create a new column type to support the way my email is embedded in the title
-\newcolumntype{?}{!{\vrule width 1.2pt}}
+% Formatting setup
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
 \raggedbottom
 \raggedright
+\newcolumntype{?}{!{\vrule width 1.2pt}} % Have to create a new column type to support the way the email is embedded in the title
+\setlength{\tabcolsep}{0in}
+
+%Useful definitions
+\renewcommand{\labelitemi}{\filledmedtriangleright}
+\newcommand{\spacing}{\vspace{\globalspacing}}
+\newcommand{\cpp}{{C\texttt{++}}} % Fixes weird formatting with regard to plusses
+\newcommand{\dash}{{\textbf{–}}}
+\newcommand{\bull}{{\large$\blacktriangleright$\hspace{4pt}}}
 
 % Specific title spacing
 \titleformat{\section}{
@@ -47,28 +53,7 @@
 }{}{0em}{\vspace{-1.3pt}}[\color{black}\titlerule \vspace{-7pt}]
 \renewcommand{\arraystretch}{1}
 
-\setlength{\tabcolsep}{0in}
-
-% Some other options I looked at for list bullets 
-% \renewcommand{\labelitemi}{$\blacktriangleright$}
-% \renewcommand{\labelitemii}{$\triangleright$}
-
-% \renewcommand{\labelitemi}{$\RHD}
-% \renewcommand{\labelitemii}{$\rhd}
-
-%rhd, RHD
-%filledmedtriangleright,medtriangleright
-
-\renewcommand{\labelitemi}{$\filledmedtriangleright}
-
-\newcommand{\spacing}{\vspace{\globalspacing}}
-
-\newcommand{\resumeItem}[2]{
-  \item{
-    \textbf{#1}{: #2 \vspace{-2pt}}
-  }
-}
-
+% Defines a table split with user-specified spacing on either side
 \newcommand{\splitter}[4]{\begin{tabular}{l|l} {#1} \hspace{#3} & \hspace{#4} {#2} \end{tabular}}
 
 % Template for subheadings, sets up tabular structure with dates at end
@@ -95,16 +80,15 @@
     \hspace{0.3pt}{#1} \\
     \spacing
 }
+\newcommand{\point}[1]{
+    {\arbitem{\bull {#1}}}
+}
 
 % Template for prior work experience
 \newcommand{\position}[6]{
     \vspace{\subsectionspacing}
     \subheading{\splitter{\textbf{#1}}{\normalfont\textit{#2}}{#3}{#4}}{#5\vspace{\listitemgap}}{#6}
 }
-
-\newcommand{\dash}{{\textbf{–}}}
-
-\newcommand{\bull}{{\large$\blacktriangleright$\hspace{4pt}}}
 
 % Title, a bit hardcoded here
 \newcommand{\info}{
@@ -123,12 +107,12 @@
 
 \newcommand{\education}{
 \section{Education}
-    \subheading{\splitter{University of Southern California}{\normalfont Los Angeles, CA}{3pt}{2pt}}{August 2014}{May 2018}
+    \subheading{\splitter{University of Southern California}{\normalfont Los Angeles, CA}{3pt}{2pt}}{August 2014}{May 2018} \vspace{-0.5pt}
+    \arbitem{\splitter{\textit{B.S. in Computer Science, Minor in Neuroscience}}{\textit{Viterbi School of Engineering}}{4pt}{0pt}} \vspace{1.5pt}
     
-    \arbitem{\splitter{\textit{B.S. in Computer Science, Minor in Neuroscience}}{\textit{Viterbi School of Engineering}}{4pt}{0pt}}
-    
+    % Hard to get the spacing right with this
     \arbitem{\begin{tabular}{l|l|l}\textbf{GPA: 3.3} \hspace{4pt} & \hspace{2pt} \textbf{ACT: 36}
-    \hspace{4pt} & \hspace{3pt} \textbf{SAT: 2370} \end{tabular}}
+    \hspace{4pt} & \hspace{3pt} \textbf{SAT: 2370} \end{tabular}}{}
 
 }
 
@@ -142,9 +126,9 @@
 \section{Skills and Interests}
     \vspace{1.5pt} % Compensate for tables having weird implicit spacing
     \arbitem{\textbf{\hspace{1pt}8\texttt{+} Years Programming Experience}}
-    \arbitem{\bull\textbf{Proficient Languages: }{\cpp, C, Python, Javascript, Java, Bash, Lua}}
-    \arbitem{\bull\textbf{Familiar Languages: }{HTML/CSS, Lisp, MATLAB, PHP}}
-    \arbitem{\bull\textbf{Software Experience: }{Unix/Linux, TensorFlow, Google Cloud, ROS, Git, React, Gazebo, V-Rep, Unity}}
+    \point{\textbf{Proficient Languages: }{\cpp, C, Python, Javascript, Java, Bash, Lua}}
+    \point{\textbf{Familiar Languages: }{HTML/CSS, Lisp, MATLAB, PHP}}
+    \point{\textbf{Software Experience: }{Unix/Linux, TensorFlow, Google Cloud, ROS, Git, React, Gazebo, V-Rep, Unity}}
 }
  
 \newcommand{\experience}{
@@ -153,18 +137,18 @@
     \vspace{-\subsectionspacing} % Remove space before first element since extra space is appended before
     
     \position{USC Center for Advanced Manufacturing }{Undergraduate Researcher}{0pt}{1pt}{January 2017}{September 2017}
-    \arbitem{\bull Led a research team to create the winning entry for the 2017 NIST ARIAC competition.} 
-    \arbitem{\bull Personally implemented the competition solution in \cpp, and integrated it with ROS and Gazebo.}
-    \arbitem{\bull Presented the solution and findings for a NIST workshop at iROS 2017 in Vancouver. }
+    \point{Led a research team to create the winning entry for the 2017 NIST ARIAC competition.} 
+    \point{Personally implemented the competition solution in \cpp, and integrated it with ROS and Gazebo.}
+    \point{Presented the solution and findings for a NIST workshop at iROS 2017 in Vancouver. }
 
     \position{USC Robotic Embedded Systems Lab }{Undergraduate Researcher}{0pt}{1.5pt}{November 2015}{August 2016}
-    \arbitem{\bull Helped develop an “active articulation” model to determine robot grasp joint geometry using ROS and \cpp.}
-    \arbitem{\bull Worked to develop a firmware-level quadrotor swarm simulator in V-Rep using C\texttt{++}, C, Lua, and ROS.}
-    \arbitem{\bull Helped improve quadrotor tracking software that processes data from a Vicon system, using C\texttt{++} and MATLAB.}
+    \point{Helped develop an “active articulation” model to determine robot grasp joint geometry using ROS and \cpp.}
+    \point{Worked to develop a firmware-level quadrotor swarm simulator in V-Rep using C\texttt{++}, C, Lua, and ROS.}
+    \point{Helped improve quadrotor tracking software that processes data from a Vicon system, using C\texttt{++} and MATLAB.}
     
     \position{USC Aerial Robotics Team Leadership }{High-Level Software Team Leader}{0pt}{1.5pt}{August 2015}{May 2017}
-    \arbitem{\bull Managed a software team working on dynamic path planning, object detection and analysis, global state simulation, optical flow tracking, and more. Directed the design of the system layout for handling and connecting these components.}
-    \arbitem{\bull Oversaw the integration of these systems with one another and with the robot’s control routines using ROS.}
+    \point{Managed a software team working on dynamic path planning, object detection and analysis, global state simulation, optical flow tracking, and more. Directed the design of the system layout for handling and connecting these components.}
+    \point{Oversaw the integration of these systems with one another and with the robot’s control routines using ROS.}
 
 }
 
@@ -174,30 +158,30 @@
     \vspace{-\subsectionspacing} % Remove space before first element since extra space is appended before
     
     \projectitem{MunchBunch Food Truck Application}{January 2018}{Present}
-    \arbitem{\bull Creating an Android application for locating, contacting, and ordering from food trucks using React Native and JavaScript.}
+    \point{Creating an Android application for locating, contacting, and ordering from food trucks using React Native and JavaScript.}
     
     \projectitem{\href{https://www.nist.gov/el/intelligent-systems-division-73500/agile-robotics-industrial-automation-competition/ariac-2017}{ARIAC Competition}}{January 2017}{July 2017}
-    \arbitem{\bull Led a research team that designed and submitted the winning solution to the NIST ARIAC Competition. The competition was designed to spur advancement in Agile robotics, enabling industrial robots to dynamically plan and execute different kinds of tasks depending on their environment and sensor quality, rather than being single-purpose.}
-    \arbitem{\bull Personally implemented the solution in \cpp, integrating it with the Gazebo simulator and ROS operating system.}
-    \arbitem{\bull Invited to speak at iROS 2017 in Vancouver as part of winning, to present the strategy and methods developed.}
+    \point{Led a research team that designed and submitted the winning solution to the NIST ARIAC Competition. The competition was designed to spur advancement in Agile robotics, enabling industrial robots to dynamically plan and execute different kinds of tasks depending on their environment and sensor quality, rather than being single-purpose.}
+    \point{Personally implemented the solution in \cpp, integrating it with the Gazebo simulator and ROS operating system.}
+    \point{Invited to speak at iROS 2017 in Vancouver as part of winning, to present the strategy and methods developed.}
     
     \projectitem{Stochastic Robot Simulation}{August 2014}{May 2017}
-    \arbitem{\bull Created and updated an event-based simulation for a system of interacting robots with added noise using C\texttt{++}, to model the possible outcomes of different given configurations. This was done to allow dynamic prediction of robots' locations and states at a given time using limited information, for the International Aerial Robotics Competition.}
+    \point{Created and updated an event-based simulation for a system of interacting robots with added noise using C\texttt{++}, to model the possible outcomes of different given configurations. This was done to allow dynamic prediction of robots' locations and states at a given time using limited information, for the International Aerial Robotics Competition.}
     
     \projectitem{Aerial Robot Path Planning}{August 2015}{January 2018}
-    \arbitem{\bull Expanded upon the earlier event-based simulation by using it for intelligent planning. This planner, written in \cpp, estimates the outcome of sets of potential action sequences in order to pick initial moves with highest utility.}
+    \point{Expanded upon the earlier event-based simulation by using it for intelligent planning. This planner, written in \cpp, estimates the outcome of sets of potential action sequences in order to pick initial moves with highest utility.}
 
     \projectitem{Quadrotor Swarm Simulation}{June 2016}{August 2016}
-    \arbitem{\bull Worked to develop a simulation of a quadrotor swarm to allow rapid and safe testing of new control code. This involved integrating the drones’ C hardware code with {\cpp} ROS and V-rep interfaces, as well as building an accurate physics model to realistically simulate their behavior.}
+    \point{Worked to develop a simulation of a quadrotor swarm to allow rapid and safe testing of new control code. This involved integrating the drones’ C hardware code with {\cpp} ROS and V-rep interfaces, as well as building an accurate physics model to realistically simulate their behavior.}
     
     \projectitem{Active Articulation Model}{November 2015}{May 2016}
-    \arbitem{\bull Worked to expand an interactive model implemented in Python and {\cpp} that determines the joint geometry connecting different objects by repeatedly finding and attempting the most “informative” manipulations with a robotic arm.}
+    \point{Worked to expand an interactive model implemented in Python and {\cpp} that determines the joint geometry connecting different objects by repeatedly finding and attempting the most “informative” manipulations with a robotic arm.}
     
     % \projectitem{IRLHUD}{Fall 2014}{}
-    % \arbitem{\bull Created an Oculus Rift interface for Microsoft Kinect using C++ to test out different applications of AR in everyday life, for the 2014 HackSC hackathon.}
+    % \point{Created an Oculus Rift interface for Microsoft Kinect using C++ to test out different applications of AR in everyday life, for the 2014 HackSC hackathon.}
     
     \projectitem{SkinCare}{November 2015}{}
-    \arbitem{\bull Worked to develop an application that can recognize skin disorders from pictures using optical Machine Learning from the TensorFlow library to help the user self-diagnose different conditions, for HackSC 2015.}
+    \point{Worked to develop an application that can recognize skin disorders from pictures using optical Machine Learning from the TensorFlow library to help the user self-diagnose different conditions, for HackSC 2015.}
 
 }
 
